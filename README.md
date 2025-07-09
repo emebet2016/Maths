@@ -1,1 +1,41 @@
-# Maths
+# Mathsimport random
+
+def guess_the_number():
+    """
+    ይህ ፋንክሽን ተጠቃሚው ትክክለኛውን ቁጥር እስኪያገኝ ድረስ እንዲገምት የሚረዳ የቁጥር መገመት ጨዋታ ይፈጥራል።
+    """
+    # ኮምፒዩተሩ የሚገመተው ሚስጥራዊ ቁጥር ከ1 እስከ 100 በዘፈቀደ ይመርጣል።
+    secret_number = random.randint(1, 100)
+    guesses_taken = 0
+    max_guesses = 7 # ተጫዋቹ የሚፈቀድለት ከፍተኛው የመገመት ብዛት
+    print("እንኳን ደህና መጣህ! የቁጥር መገመት ጨዋታ እንጫወት!")
+    print(f"ከ1 እስከ 100 ያለውን ቁጥር ለመገመት {max_guesses} ሙከራዎች አሉህ።")
+
+    while guesses_taken < max_guesses:
+        try:
+            # ተጠቃሚው ቁጥር እንዲያስገባ ይጠይቃል።
+            guess = int(input("ቁጥርህን አስገባ: "))
+
+            if not (1 <= guess <= 100):
+                print("እባክህ ከ1 እስከ 100 ያለውን ቁጥር አስገባ።")
+                continue
+
+            guesses_taken += 1 # ሙከራዎችን ይጨምራል።
+
+            if guess < secret_number:
+                print("በጣም ዝቅ ብሎሃል! ከፍ ያለ ቁጥር ሞክር።")
+            elif guess > secret_number:
+                print("በጣም ከፍ ብሎሃል! ዝቅ ያለ ቁጥር ሞክር።")
+            else:
+                # ተጠቃሚው ትክክለኛውን ቁጥር ሲያገኝ።
+                print(f"በጣም አሪፍ ነው! ትክክለኛውን ቁጥር ገምተሃል ({secret_number}) በ {guesses_taken} ሙከራዎች ውስጥ።")
+                break # ጨዋታውን ያበቃል።
+        except ValueError:
+            print("እባክህ ትክክለኛ ቁጥር አስገባ።")
+
+    else:
+        # ሙከራዎቹ ሲያልቁ እና ትክክለኛውን ቁጥር ካልገመተ።
+        print(f"ወዮ! ሙከራዎችህ አልቀዋል። ሚስጥራዊው ቁጥር {secret_number} ነበር።")
+
+# ጨዋታውን ለመጀመር ፋንክሽኑን ይጠራል።
+guess_the_number()
